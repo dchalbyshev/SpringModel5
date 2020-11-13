@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
@@ -31,5 +32,16 @@ public class GreetingController {
 
      return "main";
     }
+@PostMapping // допданные не указываем значит форма идет на тот же адрес с
+  public String add(@RequestParam String text,@RequestParam String tag, Map<String,Object>model){ // с которго  отправлена
+    //@RequestParam String text по имени полей выдергиваем поля (у нас же Post запрос)
+Message message = new Message(text,tag);
+messageRepo.save(message);
+// сохранили
+    Iterable<Message> messages = messageRepo.findAll();
+    model.put("messages",messages);
+// 2 ой шаг взяли из репозитория и отдали пользователю
 
+return "main";
 }
+    }

@@ -10,6 +10,14 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+// ОБЯЗАТЕЛЬНО создай пустой конструктор   ИНАЧЕ  все сломается
+    public Message() {
+    }
+
+    public Message(String text, String tag) {
+        this.text = text;
+        this.tag = tag;
+    }
 
     private  String text;
     private  String tag;
