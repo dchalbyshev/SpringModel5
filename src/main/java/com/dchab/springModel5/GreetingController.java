@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -43,5 +44,20 @@ messageRepo.save(message);
 // 2 ой шаг взяли из репозитория и отдали пользователю
 
 return "main";
+}
+
+@PostMapping("filter")
+    public  String filter( @RequestParam String filter,Map<String,Object>model){
+        Iterable<Message> messages;
+        // Iterable здесь потому как messageRepo.findAll() возращает Iterable
+        // а messageRepo.findByTag(filter) возращает List который имплементит Iterable
+
+        if(filter!=null && !filter.isEmpty())   // проверяем задан ли лист и не пустой тли он
+        { messages = messageRepo.findByTag(filter);}
+        else {
+            messages = messageRepo.findAll();
+        }
+    model.put("messages",messages);
+        return  "main";
 }
     }
