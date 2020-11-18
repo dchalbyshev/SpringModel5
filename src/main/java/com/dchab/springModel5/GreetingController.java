@@ -16,24 +16,23 @@ import java.util.Map;
 
 @Controller
 public class GreetingController {
- @Autowired
- private MessageRepo messageRepo;
+    @Autowired
+    public MessageRepo messageRepo;
 
     // в model складываем данные котторые хотим вернуть пользователю
-    @GetMapping("/greeting")
-    public String greeting(@RequestParam(name="name", required=false, defaultValue="friend") String name, Map<String,Object> model) {
-        model.put("name", name);
+    @GetMapping("/")
+    public String greeting(  Map<String,Object> model) {
         return "greeting";
     }
 
-    @GetMapping
+    @GetMapping("/main")
     public  String main(Map<String,Object>model ){
         Iterable<Message> messages = messageRepo.findAll();
         model.put("messages",messages);
 
      return "main";
     }
-@PostMapping // допданные не указываем значит форма идет на тот же адрес с
+@PostMapping("/main") // допданные не указываем значит форма идет на тот же адрес с
   public String add(@RequestParam String text,@RequestParam String tag, Map<String,Object>model){ // с которго  отправлена
     //@RequestParam String text по имени полей выдергиваем поля (у нас же Post запрос)
 Message message = new Message(text,tag);
@@ -46,7 +45,7 @@ messageRepo.save(message);
 return "main";
 }
 
-@PostMapping("filter")
+@PostMapping("/filter")
     public  String filter( @RequestParam String filter,Map<String,Object>model){
         Iterable<Message> messages;
         // Iterable здесь потому как messageRepo.findAll() возращает Iterable
