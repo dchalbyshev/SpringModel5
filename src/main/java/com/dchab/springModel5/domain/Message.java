@@ -1,16 +1,21 @@
 package com.dchab.springModel5.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-@Entity // дает знать Spring чот это сущностьсохр в б.д.
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.Set;
+
+@Entity // дает знать Spring чот это сущность сохр в б.д.
 public class Message {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
-// ОБЯЗАТЕЛЬНО создай пустой конструктор   ИНАЧЕ  все сломается
+
+    private String text;
+    private String tag;
+
     public Message() {
     }
 
@@ -19,8 +24,13 @@ public class Message {
         this.tag = tag;
     }
 
-    private  String text;
-    private  String tag;
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getText() {
+        return text;
+    }
 
     public Integer getId() {
         return id;
@@ -28,14 +38,6 @@ public class Message {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
     }
 
     public String getTag() {

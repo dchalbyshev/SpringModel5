@@ -1,4 +1,4 @@
-package com.dchab.springModel5;
+package com.dchab.springModel5.controller;
 
 
 
@@ -15,9 +15,9 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class GreetingController {
+public class MainController {
     @Autowired
-    public MessageRepo messageRepo;
+    private MessageRepo messageRepo;
 
     // в model складываем данные котторые хотим вернуть пользователю
     @GetMapping("/")
@@ -45,7 +45,7 @@ messageRepo.save(message);
 return "main";
 }
 
-@PostMapping("/filter")
+@PostMapping("filter")
     public  String filter( @RequestParam String filter,Map<String,Object>model){
         Iterable<Message> messages;
         // Iterable здесь потому как messageRepo.findAll() возращает Iterable

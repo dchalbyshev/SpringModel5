@@ -6,6 +6,24 @@
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/bisness</jdbc-url>
+      <driver-properties>
+        <property name="serverTimezone" value="Europe/Moscow" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="bisness" uuid="cb7fc57c-2b0a-4fc1-a29f-eb695ae74ba0">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="bisness [2]" uuid="21356549-279b-4f04-b029-0f372750613f">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
+      <driver-properties>
+        <property name="serverTimezone" value="UTC" />
+      </driver-properties>
     </data-source>
   </component>
 </project>
