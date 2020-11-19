@@ -12,7 +12,9 @@
    <form method = "post">
        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
 <input type = "text" name = "text" placeholder="Введите соообщение"/>
-<input type="text" name="tag" placeholder="Тэг">
+       <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+
+       <input type="text" name="tag" placeholder="Тэг">
 <button type="submint">Добавить</button>
    </form>
 
